@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Tinder AutoLike",
+  "version": "1.2.7",
+  "description": "AutoLike de Tinder.",
+  "permissions": ["activeTab"],
+  "icons": {
+    "16": "icon_active.png",
+    "48": "icon_active.png",
+    "128": "icon_active.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Activar"
+  },
+  "content_scripts": [
+    {
+	  "matches": ["https://tinder.com/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
