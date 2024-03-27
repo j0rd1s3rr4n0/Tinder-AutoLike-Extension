@@ -14,6 +14,19 @@ var likes = 0;
 
 
 
+function printLikesPerSecond(likes) {
+  let likesCount = likes;
+  let prevLikesCount = prevlikes;
+    const likesPerSecond = (likesCount - prevLikesCount)/3;
+    console.log('Speed: '+likesPerSecond + ' Likes/s');
+
+    prevlikes = likesCount;
+}
+
+setInterval(() => {
+  printLikesPerSecond(likes);
+}, 3000);
+
 if(sessionStorage.getItem("likes")){
   if(sessionStorage.getItem("likes")=="NaN" || sessionStorage.getItem("likes")==null || sessionStorage.getItem("likes")==undefined || sessionStorage.getItem("likes")==""){
     likes = sessionStorage.setItem("likes", 0);
@@ -25,7 +38,6 @@ if(sessionStorage.getItem("likes")){
 }else{
   likes = sessionStorage.setItem("likes", 0);
 }
-console.log("Likes: "+likes);
 
 setTimeout(() => {
   fetch('https://j0rd1s3rr4n0.github.io/api/TinderAutoLike/config.json')
@@ -46,11 +58,36 @@ setTimeout(() => {
 
 }, 5000);
 
+//No More Likes Detector
+setInterval(() => {
+  if(document.querySelector("#u1530932917 > main > div")){
+    prod = false;
+    Swal.fire({
+      title: "No more likes!",
+      text: "You have reached the end of your likes. Please wait a while before continuing.",
+      icon: "info"
+    }).then(() => {
+      window.location.reload();
+    });
+    sessionStorage.setItem("likes", 0);
+    document.querySelector("html").innerHTML = `<html><head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>No More Likes</title> <style> body { font-family: Arial, sans-serif; margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffd1ff); background-size: 400% 400%; animation: gradientBG 15s ease infinite; } @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } } .message-container { text-align: center; background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); } h1 { color: #333; font-size: 24px; margin-bottom: 10px; } p { color: #666; font-size: 16px; margin-bottom: 0; } </style> </head> <body> <div class="message-container"> <h1>No more likes!</h1> <p>You have reached the end of your likes. Please wait a while before continuing.</p> </div> </body></html>`;
+    setInterval(()=>{setTimeout(function() { debugger; }, 100)}, 1000);
+  }
+}, 1000);
+
+//Match Detector
+setInterval(() => {
+let match = document.querySelector("#u-705282102 > main > div > div.CenterAlign.M\\(a\\).Expand.Pos\\(r\\).Fx\\(\\$flx1\\) > div > div.Pos\\(r\\).W\\(100\\%\\).Pb\\(32px\\) > a > button");
+  if(match){
+    window.location.reload();
+}
+}, 5000);
+
 function clickElement() {
   let a = document.querySelector("#u-1035653303 > div > div.App__body.H\\(100\\%\\).Pos\\(r\\).Z\\(0\\) > div > main > div.H\\(100\\%\\) > div > div > div.Mt\\(a\\).Px\\(4px\\)--s.Pos\\(r\\).Expand.H\\(--recs-card-height\\)--ml.Maw\\(--recs-card-width\\)--ml > div.recsCardboard__cardsContainer.H\\(100\\%\\).Pos\\(r\\).Z\\(1\\) > div > div.Pos\\(a\\).B\\(0\\).Iso\\(i\\).W\\(100\\%\\).Start\\(0\\).End\\(0\\) > div > div.Mx\\(a\\).Fxs\\(0\\).Sq\\(70px\\).Sq\\(60px\\)--s.Bd.Bdrs\\(50\\%\\).Bdc\\(\\$c-ds-border-gamepad-like-default\\) > button")
   if (a) {
-    //console.log('Like');
-    console.log(a);
+    // console.log('Like');
+    // console.log(a);
     likes = likes + 1;
     sessionStorage.setItem("likes", likes);
     if(prod == true){
