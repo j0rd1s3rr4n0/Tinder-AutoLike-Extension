@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Tinder OSINT",
-  "version": "1.0.0",
-  "description": "Tinder User Searcher, can change gps location and get user data",
-  "permissions": ["activeTab","geolocation","storage","contextMenus","scripting"],
+  "name": "Tinder AutoLike",
+  "version": "1.3.1",
+  "description": "AutoLike de Tinder.",
+  "permissions": ["activeTab"],
   "icons": {
-    // "16": "icon_active.png",
-    // "48": "icon_active.png",
-    // "128": "icon_active.png"
+    "16": "icon_active.png",
+    "48": "icon_active.png",
+    "128": "icon_active.png"
   },
   "action": {
     "default_popup": "popup.html",
@@ -15,8 +15,8 @@
   },
   "content_scripts": [
     {
-	  "matches": ["https://tinder.com/*","https://maps.google.com/*"],
-      "js": ["content.js"],
+	  "matches": ["https://tinder.com/*"],
+      "js": ["content_script.js"],
       "run_at": "document_end"
     }
   ]
