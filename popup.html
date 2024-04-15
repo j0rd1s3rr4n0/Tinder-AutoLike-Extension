@@ -8,13 +8,28 @@
 <body style="width: 190pt;padding: 17pt;border-radius: 15pt;background: mintcream;">
     <script src="popup_script.js"></script>
     <center>
-        <h1>Tinder AutoLikes</h1>
-        <button class="button-82-pushable" role="button" id="toggleButton">
+        <h1>Tinder OSINT TOOL</h1>
+        <h3>Search Users</h3>
+        <div style="margin-bottom:20pt;">
+            <label>Name:</label><input type="text" id="Name" placeholder="Example: &quot;John&quot;" style="width: 100pt;height: 20pt;border-radius: 5pt;margin:2pt;margin-bottom:10pt;"><br>
+            <label>Ages:</label><input type="number" id="Age" min="0" max="99" placeholder="Not Filtered" value="0" style="width: 100pt;height: 20pt;border-radius: 5pt;margin:2pt;margin-bottom:10pt;"><br>
+            <small >If age is set to 0, it won't filter by age, meaning it'll be anyone.</small>
+        </div>
+        <button id="toggleButton" class="button-82-pushable" role="button" id="toggleButton">
             <span class="button-82-shadow"></span>
             <span class="button-82-edge"></span>
             <span class="button-82-front text">
                 Activar
             </span>
+        </button>
+        <button id="gpsButton" class="button-82-pushable" role="button" id="gpsButton">
+            <span class="button-82-shadow"></span>
+            <span class="button-82-edge"></span>
+            <span class="button-82-front text">
+                Change GPS Location<br>
+                <small><span id="latitude">0.0000</span>,<span id="longitude">0.0000</span></small>
+            </span>
+            
         </button>
     </center>
     <ul>
