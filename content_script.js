@@ -12,11 +12,14 @@ var version = "1.3.1";
 var error = false;
 var likes = 0;
 
-
+function getprevLikes(){
+  let prevlikes = sessionStorage.getItem("likes");
+  return prevlikes;
+}
 
 function printLikesPerSecond(likes) {
   let likesCount = likes;
-  let prevLikesCount = prevlikes;
+  let prevLikesCount = getprevLikes();if(prevLikesCount == null){prevLikesCount = 0;}
     const likesPerSecond = (likesCount - prevLikesCount)/3;
     console.log('Speed: '+likesPerSecond + ' Likes/s');
 
@@ -77,14 +80,14 @@ setInterval(() => {
 
 //Match Detector
 setInterval(() => {
-let match = document.querySelector("#u-705282102 > main > div > div.CenterAlign.M\\(a\\).Expand.Pos\\(r\\).Fx\\(\\$flx1\\) > div > div.Pos\\(r\\).W\\(100\\%\\).Pb\\(32px\\) > a > button");
+let match = document.querySelector(" main > div > div.CenterAlign.M\\(a\\).Expand.Pos\\(r\\).Fx\\(\\$flx1\\) > div > div.Pos\\(r\\).W\\(100\\%\\).Pb\\(32px\\) > a > button");
   if(match){
     window.location.reload();
 }
 }, 5000);
 
 function clickElement() {
-  let a = document.querySelector("#u-1035653303 > div > div.App__body.H\\(100\\%\\).Pos\\(r\\).Z\\(0\\) > div > main > div.H\\(100\\%\\) > div > div > div.Mt\\(a\\).Px\\(4px\\)--s.Pos\\(r\\).Expand.H\\(--recs-card-height\\)--ml.Maw\\(--recs-card-width\\)--ml > div.recsCardboard__cardsContainer.H\\(100\\%\\).Pos\\(r\\).Z\\(1\\) > div > div.Pos\\(a\\).B\\(0\\).Iso\\(i\\).W\\(100\\%\\).Start\\(0\\).End\\(0\\) > div > div.Mx\\(a\\).Fxs\\(0\\).Sq\\(70px\\).Sq\\(60px\\)--s.Bd.Bdrs\\(50\\%\\).Bdc\\(\\$c-ds-border-gamepad-like-default\\) > button")
+  let a = document.querySelector("div> div > div.App__body.H\\(100\\%\\).Pos\\(r\\).Z\\(0\\) > div > main > div.H\\(100\\%\\) > div > div > div > div.Mt\\(a\\).Px\\(4px\\)--s.Pos\\(r\\).Expand.H\\(--recs-card-height\\)--ml.Maw\\(--recs-card-width\\)--ml > div.recsCardboard__cardsContainer.H\\(100\\%\\).Pos\\(r\\).Z\\(1\\) > div > div.Pos\\(a\\).B\\(0\\).Iso\\(i\\).W\\(100\\%\\).Start\\(0\\).End\\(0\\)").childNodes[0].childNodes[3].childNodes[0];
   if (a) {
     // console.log('Like');
     // console.log(a);
@@ -92,6 +95,10 @@ function clickElement() {
     sessionStorage.setItem("likes", likes);
     if(prod == true){
       a.click();
+      //GLOBALIZE MESSAGE
+      if(document.querySelector(" div.App__body > div > main > div > div > div >div>div>div>div").childNodes[2].childNodes[1]){
+        window.location.reload();
+      }
     }
   }else{
     if(error == false){
