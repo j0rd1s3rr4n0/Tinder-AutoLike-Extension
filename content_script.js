@@ -8,7 +8,7 @@
 var prod = true;
 var headerEnabled = false;
 var scriptEnabled = false;
-var version = "1.3.1";
+var version = "1.3.2";
 var error = false;
 var likes = 0;
 
